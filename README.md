@@ -28,6 +28,16 @@ In certain parts of the simulations, variations in parameters and driving profil
 - Evaluates adiabatic and non-adiabatic transitions.
 - Implements several time-dependent coupling profiles epsilon(t) (such as Gaussian, step, delta-like, and periodic) to examine the conditions for false versus genuine loss of coherence.
 
+### unruh_engine/
+- A modularized Python package refactored from the baseline `spin_half_simulation.ipynb` prototype with the assistance of an AI assistant to enable scalable extensions.
+- Includes:
+  - `correlation.py`: Spatial-to-momentum integration and field vacuum correlation $C(s)$.
+  - `drives.py`: Standardized coupling drive families $\epsilon(t)$ and their time derivatives.
+  - `solver.py`: Optimized numerical integration for adiabatic ($I_1$), cross-term ($I_2$), and non-adiabatic memory ($I_3$) decoherence components.
+
+### drive_regimes_study.ipynb
+- Comparative study importing the `unruh_engine` package to evaluate and visualize coherence dynamics across diverse interaction regimes (Gaussian, smooth periodic, smoothed square-wave, step, and delta-like).
+
 ## Usage
 The notebook parameters (including field mass, interaction profile widths, and temporal grids) can be modified directly to test different regimes.
 
