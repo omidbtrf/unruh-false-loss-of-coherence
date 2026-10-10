@@ -1,21 +1,49 @@
-MIT License
+# Unruh: False Loss of Coherence (Derivations and Simulations)
 
-Copyright (c) 2026 Omid Bitaraf 
+Mathematical derivations and numerical simulations based on W. G. Unruh's paper "False loss of coherence" (2000).
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+## Reference Paper
+- Title: False loss of coherence
+- Author: William G. Unruh
+- Publication: Relativistic Quantum Measurement and Decoherence, ed. F. Petruccione, Springer-Verlag (2000)
+- arXiv: arXiv:1110.2199 [quant-ph]
+- DOI: 10.48550/arXiv.1110.2199
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+## Scope and Disclaimer
+This repository does not introduce any new physics or theoretical concepts beyond the reference paper. Its scope is limited to:
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+1. Mathematical derivation: Expanding the intermediate algebraic steps that were condensed or omitted in the original text.
+2. Numerical simulation: Implementing the analytical equations to evaluate the system's behavior under numerical computation.
+
+In certain parts of the simulations, variations in parameters and driving profiles are tested. These cases do not represent additional physical concepts, but rather explore configurations that were not the primary focus of the original work.
+
+## Repository Contents
+
+### spin_half_derivations.ipynb
+- Contains intermediate mathematical derivations for the spin-1/2 model coupled to a massive scalar field (Section II of the paper).
+- Note: The contents of this file were converted from handwritten notes to LaTeX format via an AI assistant. The notation and expressions are currently under manual review.
+
+### spin_half_simulation.ipynb
+- Numerical calculation of the field correlation function C(s) and the coherence factor |J(t)|.
+- Evaluates adiabatic and non-adiabatic transitions.
+- Implements several time-dependent coupling profiles epsilon(t) (such as Gaussian, step, delta-like, and periodic) to examine the conditions for false versus genuine loss of coherence.
+
+### unruh_engine/
+- A modularized Python package refactored from the baseline `spin_half_simulation.ipynb` prototype with the assistance of an AI assistant to enable scalable extensions.
+- Includes:
+  - `correlation.py`: Spatial-to-momentum integration and field vacuum correlation $C(s)$.
+  - `drives.py`: Standardized coupling drive families $\epsilon(t)$ and their time derivatives.
+  - `solver.py`: Optimized numerical integration for adiabatic ($I_1$), cross-term ($I_2$), and non-adiabatic memory ($I_3$) decoherence components.
+
+### drive_regimes_study.ipynb
+- Comparative study importing the `unruh_engine` package to evaluate and visualize coherence dynamics across diverse interaction regimes (Gaussian, smooth periodic, smoothed square-wave, step, and delta-like).
+
+## Usage
+The notebook parameters (including field mass, interaction profile widths, and temporal grids) can be modified directly to test different regimes.
+
+Dependencies:
+- Python >= 3.9
+- NumPy
+- SciPy
+- Matplotlib
+- Jupyter
